@@ -8,10 +8,8 @@ var nodemailer = require('nodemailer');
 var code;
 var message;
 
-
-
-router.post('/login', function(req, res, next) {  
-    Creditcard.login(req.body, function(err,rows) {  
+router.post('/getoffers', function(req, res, next) {  
+    Creditcard.getoffers(req.body, function(err,rows) {  
         try
         {
         if (err) 
@@ -50,9 +48,8 @@ router.post('/login', function(req, res, next) {
     });  
 });
 
-
-router.post('/getoffers', function(req, res, next) {  
-    Creditcard.getoffers(req.body, function(err,rows) {  
+router.post('/createapplication', function(req, res, next) {  
+    Creditcard.createapplication(req.body, function(err,rows) {  
         try
         {
         if (err) 
