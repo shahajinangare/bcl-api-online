@@ -15,7 +15,15 @@ var Admin =
             user.createdby,
             user.createdip],callback);
     }, 
-   
+    getoffers: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_getoffers(?,?,?,@o_errcode,@o_errdesc)",
+        [
+            customer.customerid,
+            customer.pincode,
+            customer.income,
+         ],callback);
+    }, 
     
 }
 module.exports = Admin;  
