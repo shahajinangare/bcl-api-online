@@ -1,6 +1,6 @@
 var express = require('express');  
 var router = express.Router();  
-var Admin = require('../models/Admin'); 
+var Admin = require('../models/creditcard'); 
 var logger = require('../logger').Logger;
 var nodemailer = require('nodemailer');
 
