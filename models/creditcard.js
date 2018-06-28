@@ -1,5 +1,5 @@
 var db = require('../dbconnection'); //reference of dbconnection.js  
-var Admin =
+var Creditcard =
 {
     login: function(user,callback) {  
         
@@ -26,4 +26,4 @@ var Admin =
     }, 
     
 }
-module.exports = Admin;  
+module.exports = Creditcard;  
