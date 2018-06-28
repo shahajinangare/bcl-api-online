@@ -1,6 +1,6 @@
 var express = require('express');  
 var router = express.Router();  
-var Admin = require('../models/creditcard'); 
+var Creditcard = require('../models/creditcard'); 
 var logger = require('../logger').Logger;
 var nodemailer = require('nodemailer');
 
@@ -11,7 +11,7 @@ var message;
 
 
 router.post('/login', function(req, res, next) {  
-    Admin.login(req.body, function(err,rows) {  
+    Creditcard.login(req.body, function(err,rows) {  
         try
         {
         if (err) 
@@ -52,7 +52,7 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/getoffers', function(req, res, next) {  
-    Admin.getoffers(req.body, function(err,rows) {  
+    Creditcard.getoffers(req.body, function(err,rows) {  
         try
         {
         if (err) 
