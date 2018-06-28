@@ -29,6 +29,25 @@ var Creditcard =
             customer.income,
          ],callback);
     }, 
+
+    updateapplication: function(updapplication,callback) {  
+        
+        return db.query("CALL proc_cc_updateapplication(?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            updapplication.applicationid,
+            updapplication.customerid,
+            updapplication.statusid,
+            updapplication.modifiedby,
+            updapplication.modifiedip], callback);
+    },
+
+    getcustomerinfo: function(getcustomer,callback) {  
+        
+        return db.query("CALL proc_cc_getcustomerdetails(?,?,@o_errcode,@o_errdesc)",
+        [
+            getcustomer.customerid,
+            getcustomer.mobileno], callback);
+    },
     
 }
 module.exports = Creditcard;  
