@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-===============Getoffers==============
 URL : http://localhost:7000/Creditcard/getoffers
 Input : {
   "customerid": 1,
@@ -33,34 +30,11 @@ Input:
 
 OutPut:
 
->>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
 {
     "code": 200,
     "message": "Success",
     "result": [
         {
-<<<<<<< HEAD
-            "bankname": "HDFC",
-            "bankid": 2,
-            "cardname": "Moneyback HDFC"
-        },
-        {
-            "bankname": "HDFC",
-            "bankid": 2,
-            "cardname": "HDFC Bank Diners Club Rewardz"
-        },
-        {
-            "bankname": "HDFC",
-            "bankid": 2,
-            "cardname": "Freedom"
-        },
-        {
-            "bankname": "HDFC",
-            "bankid": 2,
-            "cardname": "Solitaire"
-        }
-    ]
-=======
             "o_errcode": 200,
             "o_errdesc": "Success"
         }
@@ -133,5 +107,4 @@ OR
     "code": -100,
     "message": "No record found",
     "result": ""
->>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
 }
