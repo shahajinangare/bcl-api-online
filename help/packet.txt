@@ -214,3 +214,27 @@ response:
     "message": "Invalid otp",
     "result": ""
 }
+
+=====================Get SMS==================
+URL : http://localhost:7000/creditcard/getsms
+
+Input:
+
+{
+	"mobilenumber":"9870771973",
+	"opt":"2345"
+}
+
+Output:
+{
+    "code": "200",
+    "message": "Success",
+    "result": ""
+}
+
+OR
+{
+    "code": "14",
+    "message": "Error in SMS sending",
+    "result": ""
+}
