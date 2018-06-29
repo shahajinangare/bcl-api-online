@@ -1,3 +1,4 @@
+
 URL : http://localhost:7000/Creditcard/getoffers
 Input : {
   "customerid": 1,
@@ -35,6 +36,29 @@ OutPut:
     "message": "Success",
     "result": [
         {
+<<<<<<< HEAD
+=======
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Moneyback HDFC"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "HDFC Bank Diners Club Rewardz"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Freedom"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Solitaire"
+        }
+    ]
+>>>>>>> 9463053bf46008188f247255778eb7094e0690c3
             "o_errcode": 200,
             "o_errdesc": "Success"
         }
@@ -107,4 +131,116 @@ OR
     "code": -100,
     "message": "No record found",
     "result": ""
+<<<<<<< HEAD
+=======
+}
+
+http://localhost:7000/creditcard/customerregistration
+{
+	"name":"ppp",
+	"emailid":"nilesh.patil123@bajajcapital.com",
+	"mobileno":"9876543211",
+	"pincode":"400001",
+	"income":"50000",
+	"otp":"123456",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "customerid": 2,
+            "NAME": "ppp",
+            "emailid": "nilesh.patil123@bajajcapital.com",
+            "isemailverify": "N",
+            "mobileno": "9876543211",
+            "ismobilevwerify": "N",
+            "pincode": "400001",
+            "income": "50000",
+            "pancard": "",
+            "DOB": "",
+            "ccstatus": 1,
+            "companyname": ""
+        }
+    ]
+}
+
+http://localhost:7000/creditcard/customerverification
+{
+	"customerid":"2",
+	"name":"ppp",
+	"emailid":"nilesh.patil123@bajajcapital.com",
+	"mobileno":"9876543211",
+	"pincode":"400001",
+	"income":"50000",
+	"otp":"123456",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "customerid": 2,
+            "NAME": "ppp",
+            "emailid": "nilesh.patil123@bajajcapital.com",
+            "isemailverify": "N",
+            "mobileno": "9876543211",
+            "ismobilevwerify": "Y",
+            "pincode": "400001",
+            "income": "50000",
+            "pancard": "",
+            "DOB": "",
+            "ccstatus": 1,
+            "companyname": ""
+        }
+    ]
+}
+
+{
+    "code": -1,
+    "message": "Invalid otp",
+    "result": ""
+}
+
+=====================Get SMS==================
+URL : http://localhost:7000/creditcard/getsms
+
+Input:
+
+{
+	"mobilenumber":"9870771973",
+	"opt":"2345"
+}
+
+Output:
+{
+    "code": "200",
+    "message": "Success",
+    "result": ""
+}
+
+OR
+{
+    "code": "14",
+    "message": "Error in SMS sending",
+    "result": ""
+>>>>>>> 9463053bf46008188f247255778eb7094e0690c3
 }

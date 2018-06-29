@@ -178,4 +178,167 @@ router.post('/getcustomerinfo', function(req, res, next) {
     }  
     });  
 });
+
+
+router.post('/updateapplication', function(req, res, next) {  
+    Creditcard.updateapplication(req.body, function(err,rows) {  
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else {          
+           var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+           
+            switch(Code)
+                {
+                    case 200:
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:rows[0]
+                        })
+                        break;
+                        default:
+                    res.status(200).send({
+                        code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                        message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        result:""
+                    });
+                        
+        
+
+                }
+        }
+    }
+    catch({error})
+    {
+        logger.error(error);
+    }  
+    });  
+});
+router.post('/customerregistration', function(req, res, next) {  
+    Creditcard.customerregistration(req.body, function(err,rows) {  
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else {          
+           var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+           
+            switch(Code)
+                {
+                    case 200:
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:rows[0]
+                        })
+                        break;
+                        default:
+                    res.status(200).send({
+                        code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                        message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        result:""
+                    });
+                        
+        
+
+                }
+        }
+    }
+    catch({error})
+    {
+        logger.error(error);
+    }  
+    });  
+});
+router.post('/customerverification', function(req, res, next) {  
+    Creditcard.customerverification(req.body, function(err,rows) {  
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else {          
+           // console.log(rows);
+           var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+           console.log(Code);
+            switch(Code)
+                {
+                    case 200:
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:rows[0]
+                        })
+                        break;
+                        default:
+                    res.status(200).send({
+                        code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                        message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        result:""
+                    });
+                        
+        
+
+                }
+        }
+    }
+    catch({error})
+    {
+        logger.error(error);
+    }  
+    });  
+});
+router.post('/getsms', function(req, res, next) {  
+    Creditcard.getsms(req.body,function(err,resp) {  
+        console.log('error : ' + err);
+        console.log('resp1 : ' + resp);
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else { 
+           
+            var Code = resp.split("&")[1].split("=")[1];
+            console.log(Code);
+            switch(Code)
+            {
+                case '0':
+                res.status(200).send({
+                    code:200,
+                    message:'Success', 
+                    result:''
+                })
+                break;
+                default:
+            res.status(200).send({
+                code: Code,
+                message: "Error in process", 
+                result:""
+            });
+
+           }
+         }
+    }
+    catch({error})
+    {
+        logger.error(resp);
+    }  
+    }); 
+    
+    
+});
+
 module.exports = router; 
