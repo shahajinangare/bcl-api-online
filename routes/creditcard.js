@@ -88,14 +88,9 @@ router.post('/createapplication', function(req, res, next) {
     });  
 });
 
-<<<<<<< HEAD
 
 router.post('/createcustomerprofile', function(req, res, next) {  
     Creditcard.createcustomerprofile(req.body, function(err,rows) {  
-=======
-router.post('/updateapplication', function(req, res, next) {  
-    Creditcard.updateapplication(req.body, function(err,rows) {  
->>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
         try
         {
         if (err) 
