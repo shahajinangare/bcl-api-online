@@ -88,9 +88,14 @@ router.post('/createapplication', function(req, res, next) {
     });  
 });
 
+<<<<<<< HEAD
 
 router.post('/createcustomerprofile', function(req, res, next) {  
     Creditcard.createcustomerprofile(req.body, function(err,rows) {  
+=======
+router.post('/updateapplication', function(req, res, next) {  
+    Creditcard.updateapplication(req.body, function(err,rows) {  
+>>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
         try
         {
         if (err) 
@@ -108,6 +113,56 @@ router.post('/createcustomerprofile', function(req, res, next) {
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
                             result:rows[0]
+                        })
+                        break;
+                        default:
+                    res.status(200).send({
+                        code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                        message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        result:""
+                    });
+                        
+        
+
+                }
+        }
+    }
+    catch({error})
+    {
+        logger.error(error);
+    }  
+    });  
+});
+
+
+router.post('/getcustomerinfo', function(req, res, next) {  
+    Creditcard.getcustomerinfo(req.body, function(err,rows) {  
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else {    
+               
+           var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+           
+            switch(Code)
+                {
+                    case 200:
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:rows[0]
+                        })
+                        break;
+                        case -100:
+                        
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:""
                         })
                         break;
                         default:
