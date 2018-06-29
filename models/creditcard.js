@@ -85,5 +85,44 @@ var Creditcard =
             customer.createdip         
          ],callback);
     }, 
+    customerregistration: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_registration(?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            customer.name,
+            customer.emailid,
+            customer.mobileno,
+            customer.pincode ,
+            customer.income,
+            customer.otp,
+            customer.latlong,
+            customer.macaddress,
+            customer.browser ,
+            customer.os  ,
+            customer.source  ,
+            customer.createdby,
+            customer.createdip       
+         ],callback);
+    }, 
+    customerverification: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_verification(?,?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            customer.customerid,
+            customer.name,
+            customer.emailid,
+            customer.mobileno,
+            customer.pincode ,
+            customer.income,
+            customer.otp,
+            customer.latlong,
+            customer.macaddress,
+            customer.browser ,
+            customer.os  ,
+            customer.source  ,
+            customer.createdby,
+            customer.createdip       
+         ],callback);
+    }, 
 }
 module.exports = Creditcard;  

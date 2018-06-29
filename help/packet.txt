@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 
-===============Getoffers==============
 URL : http://localhost:7000/Creditcard/getoffers
 Input : {
   "customerid": 1,
@@ -33,13 +31,11 @@ Input:
 
 OutPut:
 
->>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
 {
     "code": 200,
     "message": "Success",
     "result": [
         {
-<<<<<<< HEAD
             "bankname": "HDFC",
             "bankid": 2,
             "cardname": "Moneyback HDFC"
@@ -60,7 +56,6 @@ OutPut:
             "cardname": "Solitaire"
         }
     ]
-=======
             "o_errcode": 200,
             "o_errdesc": "Success"
         }
@@ -133,5 +128,89 @@ OR
     "code": -100,
     "message": "No record found",
     "result": ""
->>>>>>> 7244bc47dadd87f4d4eb33bc9a43d3be5d659dd1
+}
+
+http://localhost:7000/creditcard/customerregistration
+{
+	"name":"ppp",
+	"emailid":"nilesh.patil123@bajajcapital.com",
+	"mobileno":"9876543211",
+	"pincode":"400001",
+	"income":"50000",
+	"otp":"123456",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "customerid": 2,
+            "NAME": "ppp",
+            "emailid": "nilesh.patil123@bajajcapital.com",
+            "isemailverify": "N",
+            "mobileno": "9876543211",
+            "ismobilevwerify": "N",
+            "pincode": "400001",
+            "income": "50000",
+            "pancard": "",
+            "DOB": "",
+            "ccstatus": 1,
+            "companyname": ""
+        }
+    ]
+}
+
+http://localhost:7000/creditcard/customerverification
+{
+	"customerid":"2",
+	"name":"ppp",
+	"emailid":"nilesh.patil123@bajajcapital.com",
+	"mobileno":"9876543211",
+	"pincode":"400001",
+	"income":"50000",
+	"otp":"123456",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "customerid": 2,
+            "NAME": "ppp",
+            "emailid": "nilesh.patil123@bajajcapital.com",
+            "isemailverify": "N",
+            "mobileno": "9876543211",
+            "ismobilevwerify": "Y",
+            "pincode": "400001",
+            "income": "50000",
+            "pancard": "",
+            "DOB": "",
+            "ccstatus": 1,
+            "companyname": ""
+        }
+    ]
+}
+
+{
+    "code": -1,
+    "message": "Invalid otp",
+    "result": ""
 }
