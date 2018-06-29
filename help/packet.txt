@@ -1,0 +1,36 @@
+
+===============Getoffers==============
+URL : http://localhost:7000/Creditcard/getoffers
+Input : {
+  "customerid": 1,
+  "pincode":"110002",
+    "income":"30000"
+}
+
+Output : 
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Moneyback HDFC"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "HDFC Bank Diners Club Rewardz"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Freedom"
+        },
+        {
+            "bankname": "HDFC",
+            "bankid": 2,
+            "cardname": "Solitaire"
+        }
+    ]
+}

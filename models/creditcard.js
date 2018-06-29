@@ -30,5 +30,41 @@ var Creditcard =
          ],callback);
     }, 
     
+    createcustomerprofile: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_createcustomerprofile(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            customer.customerid,
+            customer.companyname,
+            customer.compnayid,
+            customer.qualificationid ,
+            customer.residenceaddress1,
+            customer.residenceaddress2,
+            customer.residenceaddress3,
+            customer.resicity,
+            customer.resipin ,
+            customer.resiphone  ,
+            customer.resistate,
+            customer.resistdcode,
+            customer.occupationtype,
+            customer.designation,	
+            customer.natureofbusiness,
+            customer.officeaddress1,
+            customer.officeaddress2,
+            customer.officeaddress3,
+            customer.officephone  ,
+            customer.officestdcode  ,
+            customer.officepin  ,
+            customer.officestate,
+            customer.officecity,
+            customer.yearsofcurrentemployment,
+            customer.fathersname,
+            customer.mothersmaidenname,
+            customer.resilandmark,
+            customer.officelandmark,
+            customer.createdby,
+            customer.createdip         
+         ],callback);
+    }, 
 }
 module.exports = Creditcard;  
