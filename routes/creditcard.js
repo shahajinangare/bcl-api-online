@@ -66,6 +66,7 @@ router.post('/createapplication', function(req, res, next) {
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            outid:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].outid, 
                             result:rows[0]
                         })
                         break;
@@ -73,6 +74,7 @@ router.post('/createapplication', function(req, res, next) {
                     res.status(200).send({
                         code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
                         message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        outid:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].outid, 
                         result:""
                     });
                         
