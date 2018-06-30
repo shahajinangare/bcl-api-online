@@ -375,4 +375,49 @@ router.post('/getsms', function(req, res, next) {
     
     
 });
+
+router.get('/getqualification', function(req, res, next) {  
+    Creditcard.getqualification(req.body,function(err,rows) {  
+      
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else { 
+           
+            var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+            console.log(Code);
+             switch(Code)
+                 {
+                     case 200:
+                         res.status(200).send({
+                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                             result:rows[0]
+                         })
+                         break;
+                         default:
+                     res.status(200).send({
+                         code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                         message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                         result:""
+                     });
+                         
+         
+ 
+                 }
+         }
+    }
+    catch({error})
+    {
+        logger.error(resp);
+    }  
+}); 
+    
+    
+});
+
 module.exports = router; 

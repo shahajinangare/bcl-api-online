@@ -147,5 +147,11 @@ var Creditcard =
         });
         
     },
+
+    getqualification: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_getqualification(@o_errcode,@o_errdesc)",
+        [],callback);
+    },
 }
 module.exports = Creditcard;  
