@@ -131,8 +131,6 @@ OR
     "code": -100,
     "message": "No record found",
     "result": ""
-<<<<<<< HEAD
-=======
 }
 
 http://localhost:7000/creditcard/customerregistration
@@ -226,7 +224,7 @@ URL : http://localhost:7000/creditcard/getsms
 Input:
 
 {
-	"mobilenumber":"9870771973",
+	"mobileno":"9870771973",
 	"opt":"2345"
 }
 
@@ -242,5 +240,4 @@ OR
     "code": "14",
     "message": "Error in SMS sending",
     "result": ""
->>>>>>> 9463053bf46008188f247255778eb7094e0690c3
 }
