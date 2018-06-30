@@ -7,7 +7,7 @@ var Common =
         
         try
         {  
-            console.log('strat mail');
+            console.log('strat email');
             console.log(req.toemailid + 'Credentials obtained, sending message...');
             console.log(req);
             nodemailer.createTestAccount((err, account) => {
@@ -30,8 +30,8 @@ var Common =
                         port: 465,
                         secure: true,
                         auth: {
-                            user: 'pravin.phapale88@gmail.com', // generated ethereal user
-                            pass: 'sidhivinayak' // generated ethereal password
+                            user: '', // generated ethereal user
+                            pass: '' // generated ethereal password
                         },
                         logger: true,
                         debug: false // include SMTP traffic in the logs
@@ -40,7 +40,7 @@ var Common =
                         // default message fields
             
                         // sender info
-                        from: 'pravin.phapale88@gmail.com',
+                        from: '',
                         headers: {
                             'X-Laziness-level': 1000 // just an example header, no need to use this
                         }
