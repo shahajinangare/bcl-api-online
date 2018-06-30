@@ -235,6 +235,21 @@ router.post('/customerregistration', function(req, res, next) {
             switch(Code)
                 {
                     case 200:
+                    console.log('call sms : ');
+                        Creditcard.getsms(req.body,function(err,resp) {  
+                            console.log('error : ' + err);
+                            console.log('resp1 : ' + resp);
+                            
+                            if (err) 
+                            {  
+                                logger.error(err); 
+                                res.json(err); 
+                            } else { 
+                                var smsCode = resp.split("&")[1].split("=")[1];
+                                console.log('call sms : ' + smsCode);
+                            }
+                        }); 
+                        console.log('end sms : ');
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
@@ -316,6 +331,7 @@ router.post('/customerverification', function(req, res, next) {
     }  
     });  
 });
+
 router.post('/getsms', function(req, res, next) {  
     Creditcard.getsms(req.body,function(err,resp) {  
         console.log('error : ' + err);
