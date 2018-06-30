@@ -3,6 +3,7 @@ var router = express.Router();
 var Creditcard = require('../models/creditcard'); 
 var logger = require('../logger').Logger;
 var nodemailer = require('nodemailer');
+var Common = require('../models/common');
 
 
 var code;
@@ -268,12 +269,29 @@ router.post('/customerverification', function(req, res, next) {
             res.json(err); 
             
         } else {          
+
+            
+            
            // console.log(rows);
            var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
            console.log(Code);
             switch(Code)
                 {
                     case 200:
+                        
+                        req.body.toemailid= req.body.emailid;
+                        req.body.ccemailid='';
+                        req.body.subject='test';
+                        req.body.message='';
+                        req.body.messagehtml='test';
+            
+                    // console.log(req.body);
+                        // Common.sendemail(req.body, function(err,rows)
+                        // {
+                        //     //console.log('send ammm');
+                            
+                        // }); 
+
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
