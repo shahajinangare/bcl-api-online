@@ -316,5 +316,47 @@ router.post('/customerverification', function(req, res, next) {
     }  
     });  
 });
+router.post('/getsms', function(req, res, next) {  
+    Creditcard.getsms(req.body,function(err,resp) {  
+        console.log('error : ' + err);
+        console.log('resp1 : ' + resp);
+        try
+        {
+        if (err) 
+        {  
+            logger.error(err); 
+            res.json(err); 
+            
+        } else { 
+           
+            var Code = resp.split("&")[1].split("=")[1];
+            console.log(Code);
+            switch(Code)
+            {
+                case '0':
+                res.status(200).send({
+                    code:200,
+                    message:'Success', 
+                    result:''
+                })
+                break;
+                default:
+            res.status(200).send({
+                code: Code,
+                message: "Error in process", 
+                result:""
+            });
+
+           }
+         }
+    }
+    catch({error})
+    {
+        logger.error(resp);
+    }  
+    }); 
+    
+    
+});
 
 module.exports = router; 

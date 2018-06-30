@@ -36,6 +36,8 @@ OutPut:
     "message": "Success",
     "result": [
         {
+<<<<<<< HEAD
+=======
             "bankname": "HDFC",
             "bankid": 2,
             "cardname": "Moneyback HDFC"
@@ -56,6 +58,7 @@ OutPut:
             "cardname": "Solitaire"
         }
     ]
+>>>>>>> 9463053bf46008188f247255778eb7094e0690c3
             "o_errcode": 200,
             "o_errdesc": "Success"
         }
@@ -128,6 +131,8 @@ OR
     "code": -100,
     "message": "No record found",
     "result": ""
+<<<<<<< HEAD
+=======
 }
 
 http://localhost:7000/creditcard/customerregistration
@@ -213,4 +218,29 @@ response:
     "code": -1,
     "message": "Invalid otp",
     "result": ""
+}
+
+=====================Get SMS==================
+URL : http://localhost:7000/creditcard/getsms
+
+Input:
+
+{
+	"mobilenumber":"9870771973",
+	"opt":"2345"
+}
+
+Output:
+{
+    "code": "200",
+    "message": "Success",
+    "result": ""
+}
+
+OR
+{
+    "code": "14",
+    "message": "Error in SMS sending",
+    "result": ""
+>>>>>>> 9463053bf46008188f247255778eb7094e0690c3
 }

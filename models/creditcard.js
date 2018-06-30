@@ -124,5 +124,27 @@ var Creditcard =
             customer.createdip       
          ],callback);
     }, 
+
+    
+    getsms: function(sms,callback) {  
+        console.log('resp inner : ' + sms.mobilenumber);
+        var smsurl ='http://myvaluefirst.com/smpp/sendsms?username=bajajcapital1&password=bajaj123&to='+sms.mobilenumber+'&from=BAJAJA&udh=0&text=%20Your%20transaction%20request%20with%20ref.%20no.%20125258%20is%20received%20from%20login%20ID%20SHIBRAJ%20on%20Jun%2021%202016%202:33PM%20hrs.%20For%20queries,%20Please%20call%20+919582999706&dlr-mask=19&dlr-url&category=bulk';
+      
+        
+        requestify.request(smsurl, {
+            method: 'GET'
+                    
+        })
+        .then(function(response) {
+                response.getBody();
+                response.getHeaders();
+                response.getHeader('Accept');
+                response.getCode();
+                console.log('resp inner : ' + response.body);
+                return callback('',response.body);
+
+        });
+        
+    },
 }
 module.exports = Creditcard;  
