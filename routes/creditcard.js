@@ -4,7 +4,8 @@ var Creditcard = require('../models/creditcard');
 var logger = require('../logger').Logger;
 var nodemailer = require('nodemailer');
 var Common = require('../models/common');
-
+//var welcomeemail = require('../public/htmls/welcomeemail.htm');
+//var http = require('http');
 
 var code;
 var message;
@@ -67,6 +68,7 @@ router.post('/createapplication', function(req, res, next) {
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            outid:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].outid, 
                             result:rows[0]
                         })
                         break;
@@ -74,6 +76,7 @@ router.post('/createapplication', function(req, res, next) {
                     res.status(200).send({
                         code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
                         message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        outid:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].outid, 
                         result:""
                     });
                         
@@ -296,17 +299,17 @@ router.post('/customerverification', function(req, res, next) {
                         
                         req.body.toemailid= req.body.emailid;
                         req.body.ccemailid='';
-                        req.body.subject='test';
+                        req.body.subject='test mail';
                         req.body.message='';
-                        req.body.messagehtml='test';
+                        req.body.messagehtml=welcomeemail;
             
                     // console.log(req.body);
-                        // Common.sendemail(req.body, function(err,rows)
-                        // {
-                        //     //console.log('send ammm');
+                        Common.sendemail(req.body, function(err,rows)
+                        {
+                            //console.log('send ammm');
                             
-                        // }); 
-
+                        }); 
+                        console.log('send email');
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
