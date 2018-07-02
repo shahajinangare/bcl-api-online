@@ -8,7 +8,7 @@ var Common =
         try
         {  
             console.log('strat email');
-            console.log(req.toemailid + 'Credentials obtained, sending message...');
+            console.log(req.messagehtml + 'Credentials obtained, sending message...');
             console.log(req);
             nodemailer.createTestAccount((err, account) => {
                 if (err) {
