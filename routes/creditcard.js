@@ -6,6 +6,8 @@ var nodemailer = require('nodemailer');
 var Common = require('../models/common');
 //var welcomeemail = require('../public/htmls/welcomeemail.htm');
 //var http = require('http');
+var http = require('http');
+var fs = require('fs');
 
 var code;
 var message;
@@ -287,29 +289,39 @@ router.post('/customerverification', function(req, res, next) {
             res.json(err); 
             
         } else {          
+           
 
-            
-            
-           // console.log(rows);
+            console.log('send email');
+
+
            var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
            console.log(Code);
             switch(Code)
                 {
                     case 200:
                         
+                    var filecontent='';
+                    fs.readFile('./public/htmls/welcomeemail.html', 'utf8', function (err,data) {
+                        if (err) {
+                        return console.log(err);
+                        }
+                        filecontent=data.replace('@name', req.body.name);
+                      //  console.log(filecontent);
                         req.body.toemailid= req.body.emailid;
                         req.body.ccemailid='';
                         req.body.subject='test mail';
                         req.body.message='';
-                        req.body.messagehtml=welcomeemail;
-            
-                    // console.log(req.body);
-                        Common.sendemail(req.body, function(err,rows)
-                        {
-                            //console.log('send ammm');
+                        req.body.messagehtml=filecontent;
+        
+                        // console.log(req.body.messagehtml);
+                        // Common.sendemail(req.body, function(err,rows1)
+                        // {
+                        //     console.log('send maillllllllllllllll');
                             
-                        }); 
-                        console.log('send email');
+                        // }); 
+                    });
+
+                       
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
