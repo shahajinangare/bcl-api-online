@@ -229,7 +229,12 @@ router.post('/customerregistration', function(req, res, next) {
     Creditcard.customerregistration(req.body, function(err,rows) {  
         try
         {
-        if (err) 
+                    //       res.status(200).send({
+                    //     code: '',
+                    //     message: '', 
+                    //     result:rows
+                    // });
+            if (err) 
         {  
             logger.error(err); 
             res.json(err); 
@@ -255,6 +260,8 @@ router.post('/customerregistration', function(req, res, next) {
                             }
                         }); 
                         console.log('end sms : ');
+
+
                         res.status(200).send({
                             code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
                             message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
