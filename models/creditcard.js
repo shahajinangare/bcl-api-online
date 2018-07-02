@@ -52,7 +52,7 @@ var Creditcard =
     
     createcustomerprofile: function(customer,callback) {  
         
-        return db.query("CALL proc_cc_createcustomerprofile(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        return db.query("CALL proc_cc_createcustomerprofile(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
         [
             customer.name,
             customer.emailid,
@@ -90,7 +90,12 @@ var Creditcard =
             customer.resilandmark,
             customer.officelandmark,
             customer.createdby,
-            customer.createdip         
+            customer.createdip,
+            customer.latlong,
+            customer.macaddress,
+            customer.browser,
+            customer.os,
+            customer.source,         
          ],callback);
     }, 
     customerregistration: function(customer,callback) {  
