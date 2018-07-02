@@ -54,6 +54,8 @@ var Creditcard =
         
         return db.query("CALL proc_cc_createcustomerprofile(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
         [
+            customer.prefix,
+            customer.gender,
             customer.customerid,
             customer.companyname,
             customer.compnayid,
