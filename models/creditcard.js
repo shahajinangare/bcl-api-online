@@ -165,5 +165,11 @@ var Creditcard =
         return db.query("CALL proc_cc_getqualification(@o_errcode,@o_errdesc)",
         [],callback);
     },
+    getcardfeatures: function(offers,callback) {  
+        
+        return db.query("CALL proc_cc_get_cardfeatures(?,@o_errcode,@o_errdesc)",
+        [
+            offers.offerlist], callback);
+    },
 }
 module.exports = Creditcard;  
