@@ -171,5 +171,10 @@ var Creditcard =
         [
             offers.offerlist], callback);
     },
+    getcompany: function(customer,callback) {  
+        
+        return db.query("CALL proc_cc_getcompany(@o_errcode,@o_errdesc)",
+        [],callback);
+    },
 }
 module.exports = Creditcard;  
