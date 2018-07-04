@@ -246,19 +246,103 @@ router.post('/customerregistration', function(req, res, next) {
                 {
                     case 200:
                     console.log('call sms : ');
-                        Creditcard.getsms(req.body,function(err,resp) {  
-                            console.log('error : ' + err);
-                            console.log('resp1 : ' + resp);
-                            
-                            if (err) 
-                            {  
-                                logger.error(err); 
-                                res.json(err); 
-                            } else { 
-                                var smsCode = resp.split("&")[1].split("=")[1];
-                                console.log('call sms : ' + smsCode);
-                            }
-                        }); 
+                            req.body.smsid= 0;
+                            Creditcard.insertsmsdet(req.body,function(err,rows) {  
+                            //  console.log(rows);
+                                var insertCode = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+                                //console.log(insertCode);
+                        
+                                switch(insertCode)
+                                    {
+                                        case 200:
+                                        console.log(JSON.parse(JSON.stringify(rows[rows.length-2]))[0].smsid + ' insert sms id');
+                                            req.body.smsid= JSON.parse(JSON.stringify(rows[rows.length-2]))[0].smsid;
+                                        // console.log(req.body.smsid + ' insert sms id');
+                        
+                                                req.body.message = req.body.message.replace('v1', req.body.otp);
+                                                Creditcard.getsms(req.body,function(err,resp) {  
+                                                    console.log('error : ' + err);
+                                                    console.log('resp1 : ' + resp);
+                                                    try
+                                                    {
+                                                    if (err) 
+                                                    {  
+                                                        logger.error(err); 
+                                                        res.json(err); 
+                                                        
+                                                    } else { 
+                                                        var Code = resp.split("&")[1].split("=")[1];
+                                                    // console.log(resp);
+                                                        switch(Code)
+                                                        {
+                                                            case '0':
+                                                            req.body.response=resp;
+                                                            req.body.guid=resp.split("&")[0].split("=")[1];
+                                                            req.body.responsecode=resp.split("&")[1].split("=")[1];
+                                            
+                                                            Creditcard.insertsmsdet(req.body,function(err,updaterows) {  
+                                                            // console.log(updaterows);
+                                                                var updateCode = JSON.parse(JSON.stringify(updaterows[updaterows.length-2]))[0].o_errcode;
+                                                            // console.log(updateCode+ ' update code');
+                                                                switch(updateCode)
+                                                                    {
+                                                                        case 200:
+                                                                        
+                                                                        // console.log(req.body.smsid + 'update sms id');
+                                                                            break;
+                                                                        default:
+                                                                    }
+                                                                }); 
+                                                                    res.status(200).send({
+                                                                        code:200,
+                                                                        message:'Success', 
+                                                                        result:''
+                                                                    })
+                                                            break;
+                                                            default:
+                                                        
+                                                            req.body.response=resp;
+                                                            req.body.guid=resp.split("&")[0].split("=")[1];
+                                                            req.body.responsecode=resp.split("&")[1].split("=")[1];
+                                            
+                                                            Creditcard.insertsmsdet(req.body,function(err,updaterows) {  
+                                            
+                                                                var updateCode = JSON.parse(JSON.stringify(updaterows[updaterows.length-2]))[0].o_errcode;
+                                                                console.log(updateCode+ ' update code');
+                                                                switch(updateCode)
+                                                                    {
+                                                                        case 200:
+                                                                            console.log(req.body.smsid + 'update sms id');
+                                                                            break;
+                                                                        default:
+                                                                    }
+                                                                }); 
+                                            
+                                                            res.status(200).send({
+                                                                code: Code,
+                                                                message: "Error in process", 
+                                                                result:""
+                                                            });
+                                            
+                                                    }
+                                                    }
+                                                }
+                                                catch({error})
+                                                {
+                                                    logger.error(resp);
+                                                }  
+                                                }); 
+                        
+                                            break;
+                                        default:
+                                            res.status(200).send({
+                                                code: 100,
+                                                message: "Error in insert sms", 
+                                                result:""
+                                            });
+                                    
+                                    }
+                            }); 
                         console.log('end sms : ');
 
 
@@ -296,11 +380,7 @@ router.post('/customerverification', function(req, res, next) {
             res.json(err); 
             
         } else {          
-           
-
             console.log('send email');
-
-
            var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
            console.log(Code);
             switch(Code)
@@ -355,46 +435,105 @@ router.post('/customerverification', function(req, res, next) {
 });
 
 router.post('/getsms', function(req, res, next) {  
-    Creditcard.getsms(req.body,function(err,resp) {  
-        console.log('error : ' + err);
-        console.log('resp1 : ' + resp);
-        try
-        {
-        if (err) 
-        {  
-            logger.error(err); 
-            res.json(err); 
-            
-        } else { 
-           
-            var Code = resp.split("&")[1].split("=")[1];
-            console.log(Code);
-            switch(Code)
-            {
-                case '0':
-                res.status(200).send({
-                    code:200,
-                    message:'Success', 
-                    result:''
-                })
-                break;
-                default:
-            res.status(200).send({
-                code: Code,
-                message: "Error in process", 
-                result:""
-            });
+    
+   
+    req.body.smsid= 0;
+    Creditcard.insertsmsdet(req.body,function(err,rows) {  
+      //  console.log(rows);
+        var insertCode = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+        //console.log(insertCode);
+       // console.log(req.body.message);
+         switch(insertCode)
+             {
+                 case 200:
+                 console.log(JSON.parse(JSON.stringify(rows[rows.length-2]))[0].smsid + ' insert sms id');
+                    req.body.smsid= JSON.parse(JSON.stringify(rows[rows.length-2]))[0].smsid;
+                   // console.log( req.body.message);
+                        req.body.message = req.body.message.replace('v1', req.body.otp);
+                        //console.log(req.body.message);
+                        Creditcard.getsms(req.body,function(err,resp) {  
+                            console.log('error : ' + err);
+                            console.log('resp1 : ' + resp);
+                            try
+                            {
+                            if (err) 
+                            {  
+                                logger.error(err); 
+                                res.json(err); 
+                                
+                            } else { 
+                                var Code = resp.split("&")[1].split("=")[1];
+                               // console.log(resp);
+                                switch(Code)
+                                {
+                                    case '0':
+                                    req.body.response=resp;
+                                    req.body.guid=resp.split("&")[0].split("=")[1];
+                                    req.body.responsecode=resp.split("&")[1].split("=")[1];
+                    
+                                    Creditcard.insertsmsdet(req.body,function(err,updaterows) {  
+                                       // console.log(updaterows);
+                                        var updateCode = JSON.parse(JSON.stringify(updaterows[updaterows.length-2]))[0].o_errcode;
+                                       // console.log(updateCode+ ' update code');
+                                        switch(updateCode)
+                                            {
+                                                case 200:
+                                                
+                                                   // console.log(req.body.smsid + 'update sms id');
+                                                    break;
+                                                default:
+                                            }
+                                        }); 
+                                            res.status(200).send({
+                                                code:200,
+                                                message:'Success', 
+                                                result:''
+                                            })
+                                    break;
+                                    default:
+                                
+                                    req.body.response=resp;
+                                    req.body.guid=resp.split("&")[0].split("=")[1];
+                                    req.body.responsecode=resp.split("&")[1].split("=")[1];
+                    
+                                    Creditcard.insertsmsdet(req.body,function(err,updaterows) {  
+                    
+                                        var updateCode = JSON.parse(JSON.stringify(updaterows[updaterows.length-2]))[0].o_errcode;
+                                        console.log(updateCode+ ' update code');
+                                        switch(updateCode)
+                                            {
+                                                case 200:
+                                                    console.log(req.body.smsid + 'update sms id');
+                                                    break;
+                                                default:
+                                            }
+                                        }); 
+                    
+                                    res.status(200).send({
+                                        code: Code,
+                                        message: "Error in process", 
+                                        result:""
+                                    });
+                    
+                            }
+                            }
+                        }
+                        catch({error})
+                        {
+                            logger.error(resp);
+                        }  
+                        }); 
 
-           }
-         }
-    }
-    catch({error})
-    {
-        logger.error(resp);
-    }  
+                     break;
+                 default:
+                    res.status(200).send({
+                        code: 100,
+                        message: "Error in insert sms", 
+                        result:""
+                    });
+               
+             }
     }); 
-    
-    
 });
 
 router.get('/getqualification', function(req, res, next) {  

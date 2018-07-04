@@ -141,6 +141,7 @@ http://localhost:7000/creditcard/customerregistration
 	"pincode":"400001",
 	"income":"50000",
 	"otp":"123456",
+    "message":"received from login ID on. For queries new",
 	"latlong":"111.22",
 	"macaddress":"mac",
 	"browser":"ie",
@@ -224,8 +225,16 @@ URL : http://localhost:7000/creditcard/getsms
 Input:
 
 {
-	"mobileno":"9870771973",
-	"opt":"2345"
+	"mobileno":"9870117204",
+	"otp":"23456",
+	"message":"received from login ID on. For queries new",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
 }
 
 Output:

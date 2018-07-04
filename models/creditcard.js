@@ -176,5 +176,23 @@ var Creditcard =
         return db.query("CALL proc_cc_getcompany(@o_errcode,@o_errdesc)",
         [],callback);
     },
+    insertsmsdet: function(smsdet,callback) {  
+        
+        return db.query("CALL proc_cm_smsinsert(?,?,?,?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            smsdet.smsid,
+            smsdet.mobileno,
+            smsdet.message,
+            smsdet.response,
+            smsdet.responsecode,
+            smsdet.guid,
+            smsdet.latlong,
+            smsdet.macaddress,
+            smsdet.browser ,
+            smsdet.os  ,
+            smsdet.source  ,
+            smsdet.createdby,
+            smsdet.createdip], callback);
+    },
 }
 module.exports = Creditcard;  
